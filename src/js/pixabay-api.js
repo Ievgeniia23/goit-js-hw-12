@@ -1,24 +1,34 @@
 `use strict`;
 
+import axios from 'axios';
+
 const API_KEY = '43279373-50d6c66b7fce6ad9a5efd1552';
 
-export const fetchData = inputValue => {
+export const searchData = async(inputValue, page) => {
   const params = new URLSearchParams({
     key: API_KEY,
+    page: page,
+    per_page: 15,
     q: inputValue,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: 'true',
   });
-
-  return fetch(`https://pixabay.com/api/?${params}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+   const response = await axios.get(`https://pixabay.com/api/?${params}`);
+   return response.data;
 };
+
+
+
+
+
+// try {
+    // const response = await axios.get(`https://pixabay.com/api/?${params}`);
+    // return response.data;
+  // } catch (error) {
+  //   console.error('Error fetching data:', error);
+  //   throw error; // Якщо ви хочете обробити помилку викликаючого коду
+  // }
+// };
+
+ 

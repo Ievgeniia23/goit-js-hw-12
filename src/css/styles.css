@@ -60,6 +60,11 @@ button:focus {
    
 }
 
+.btn {
+   width: 125px;
+   
+}
+
 .gallery {
   display: flex;
   

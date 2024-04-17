@@ -6,15 +6,20 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import icon from './img/Group.svg';
 
-import { fetchData } from './js/pixabay-api';
+import { searchData } from './js/pixabay-api';
 
 import { createMarkup } from './js/render-functions';
 
 const form = document.querySelector('form');
 const gallery = document.querySelector('ul');
 const loader = document.querySelector('.loader');
+const loadBtn = document.querySelector('.btn')
 
 loader.style.display = 'none';
+loadBtn.style.display = 'none';
+
+let page = 36;
+
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: `alt`,
@@ -23,7 +28,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 
 form.addEventListener('submit', handleSubmit);
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
 
   const inputValue = event.currentTarget.elements.query.value.trim();
@@ -32,8 +37,10 @@ function handleSubmit(event) {
 
   loader.style.display = 'block';
 
-  fetchData(inputValue)
+  searchData(inputValue, page)
     .then(data => {
+console.log(data);
+
       if (data.hits.length === 0) {
         iziToast.show({
           iconUrl: icon,
@@ -46,8 +53,24 @@ function handleSubmit(event) {
         });
       } else {
         gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
+        const totalPages = Math.ceil(data.totalHits / 15);
+        
+        if (page <= totalPages) {
+          loadBtn.style.display = 'block';
+        } else {
+loadBtn.style.display = 'none';
 
-        lightbox.refresh();
+          //  iziToast.show({
+          //    iconUrl: icon,
+          //    message:
+          //      'We're sorry, but you've reached the end of search results',
+          //    messageColor: '#ffffff',
+          //    color: '#ef4040',
+          //    close: true,
+          //    position: 'topRight',
+          //  });
+       }
+            lightbox.refresh();
       }
     })
 
@@ -68,3 +91,4 @@ function handleSubmit(event) {
 
   form.reset();
 }
+
