@@ -1,3 +1,4 @@
+
 .wrap {
   display: flex;
   justify-content: center;
@@ -62,6 +63,7 @@ button:focus {
 
 .btn {
    width: 125px;
+    background: #4e75ff;
    
 }
 
