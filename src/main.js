@@ -59,13 +59,13 @@ form.addEventListener('submit', handleSubmit);
               gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
               totalPages = Math.ceil(data.totalHits / 15);
 
-              // const card = document.querySelector('.gallery-item');
-              // const cardHeight = card.getBoundingClientRect().height;
-              // Window.scrollBy({
-              //   top: cardHeight * 2,
-              //   left: 0,
-              //   behavior: 'smooth',
-              // }); 
+              const card = document.querySelector('.gallery-item');
+              const cardHeight = card.getBoundingClientRect().height;
+              Window.scrollBy({
+                top: cardHeight * 2,
+                left: 0,
+                behavior: 'smooth',
+              }); 
 
 
               if (page <= totalPages) {
@@ -73,14 +73,14 @@ form.addEventListener('submit', handleSubmit);
               } else {
                 loadBtn.style.display = 'none';
 
-                //  iziToast.show({
-                //    iconUrl: icon,
-                //    message: 'We are sorry, but you have reached the end of search results',
-                //    messageColor: '#ffffff',
-                //    color: '#ef4040',
-                //    close: true,
-                //    position: 'topRight',
-                //  });
+                 iziToast.show({
+                   iconUrl: icon,
+                   message: 'We are sorry, but you have reached the end of search results',
+                   messageColor: '#ffffff',
+                   color: '#ef4040',
+                   close: true,
+                   position: 'topRight',
+                 });
               }
               lightbox.refresh();
             }
@@ -111,20 +111,18 @@ async function loadMore() {
 
     if (page >= totalPages) {
       
-      // loadBtn.style.display = 'none';
+      loadBtn.style.display = 'none';
 
-    // iziToast.show({
-    //   iconUrl: icon,
-    //   message:
-    //   messageColor: '#ffffff',
-    //   color: '#ef4040',
-    //   close: true,
-    //   position: 'topRight',
-    // });
+      iziToast.show({
+      iconUrl: icon,
+      message:  'We are sorry, but you have reached the end of search results',
+      messageColor: '#ffffff',
+      color: '#ef4040',
+      close: true,
+      position: 'topRight',
+});
       
     }
-
-    
     
 
   } catch (error) {
