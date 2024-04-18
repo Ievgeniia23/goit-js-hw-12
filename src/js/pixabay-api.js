@@ -22,13 +22,6 @@ export const searchData = async(inputValue, page) => {
 
 
 
-// try {
-    // const response = await axios.get(`https://pixabay.com/api/?${params}`);
-    // return response.data;
-  // } catch (error) {
-  //   console.error('Error fetching data:', error);
-  //   throw error; // Якщо ви хочете обробити помилку викликаючого коду
-  // }
-// };
+
 
  

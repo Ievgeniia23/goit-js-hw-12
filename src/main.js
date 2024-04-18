@@ -49,7 +49,8 @@ form.addEventListener('submit', handleSubmit);
               iziToast.show({
                 iconUrl: icon,
                 message:
-                  'Sorry, there are no images matching your search query. Please try again!',
+                  'Sorry',
+                // 'Sorry, there are no images matching your search query. Please try again!'
                 messageColor: '#ffffff',
                 color: '#ef4040',
                 close: true,
@@ -59,13 +60,13 @@ form.addEventListener('submit', handleSubmit);
               gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
               totalPages = Math.ceil(data.totalHits / 15);
 
-              const card = document.querySelector('.gallery-item');
-              const cardHeight = card.getBoundingClientRect().height;
-              Window.scrollBy({
-                top: cardHeight * 2,
-                left: 0,
-                behavior: 'smooth',
-              }); 
+              // const card = document.querySelector('.gallery-item');
+              // const cardHeight = card.getBoundingClientRect().height;
+              // Window.scrollBy({
+              //   top: cardHeight * 2,
+              //   left: 0,
+              //   behavior: 'smooth',
+              // }); 
 
 
               if (page <= totalPages) {
@@ -75,7 +76,8 @@ form.addEventListener('submit', handleSubmit);
 
                  iziToast.show({
                    iconUrl: icon,
-                   message: 'We are sorry, but you have reached the end of search results',
+                   message: 'We are sorry',
+                  //  'We are sorry, but you have reached the end of search results'
                    messageColor: '#ffffff',
                    color: '#ef4040',
                    close: true,
@@ -85,15 +87,15 @@ form.addEventListener('submit', handleSubmit);
               lightbox.refresh();
             }
         } catch(error) {
-      iziToast.show({
-        iconUrl: icon,
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-        messageColor: '#ffffff',
-        color: '#ef4040',
-        close: true,
-        position: 'topRight',
-      });
+      // iziToast.show({
+      //   iconUrl: icon,
+      //   message:
+      //     'Please try again!',
+      //   messageColor: '#ffffff',
+      //   color: '#ef4040',
+      //   close: true,
+      //   position: 'topRight',
+      // });
         }finally {
             loader.style.display = 'none';
           }
@@ -115,7 +117,7 @@ async function loadMore() {
 
       iziToast.show({
       iconUrl: icon,
-      message:  'We are sorry, but you have reached the end of search results',
+      message:  ' you have reached the end of search results',
       messageColor: '#ffffff',
       color: '#ef4040',
       close: true,
@@ -127,6 +129,7 @@ async function loadMore() {
 
   } catch (error) {
     alert(error.message);
+   
 }
 
   lightbox.refresh();
