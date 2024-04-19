@@ -31,13 +31,11 @@ form.addEventListener('submit', handleSubmit);
 
 async function handleSubmit(event) {
       event.preventDefault();
-      // inputValue = form.elements.query.value.trim();
       inputValue = event.currentTarget.elements.query.value.trim();
   gallery.innerHTML = '';
    
   loader.style.display = 'block';
-  await new Promise(resolve => setTimeout(resolve, 2000));
-      
+     
       try {
       const data = await searchData(inputValue, page);
        
@@ -83,18 +81,16 @@ async function handleSubmit(event) {
         position: 'topRight',
         });
     } finally {
-          loader.style.display = 'none';
-          }
+        loader.style.display = 'none';
+        }
     form.reset();
 }
 async function loadMore() {
     page += 1;
-    try {
-    loader.style.display = 'block';   
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+  try {
+    loader.style.display = 'block';
     const data = await searchData(inputValue, page);
-      gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
+    gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
 
       if (page >= totalPages) {
       
