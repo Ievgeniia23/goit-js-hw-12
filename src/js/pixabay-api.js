@@ -17,11 +17,3 @@ export const searchData = async(inputValue, page) => {
    const response = await axios.get(`https://pixabay.com/api/?${params}`);
    return response.data;
 };
-
-
-
-
-
-
-
- 
