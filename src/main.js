@@ -35,7 +35,7 @@ async function handleSubmit(event) {
   gallery.innerHTML = '';
    
   loader.style.display = 'block';
-     
+  page = 1;
       try {
       const data = await searchData(inputValue, page);
        
