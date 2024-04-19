@@ -6,6 +6,7 @@
 body {
   padding-left: 60px;
   padding-right: 60px;
+  padding-bottom: 80px;
   display:flex; 
   text-align: center;
   flex-direction: column;
@@ -63,7 +64,7 @@ button:focus {
 .btn {
   width: 125px;
   background: #4e75ff;
-  margin-bottom: 80px;
+  /* margin-bottom: 80px; */
    
 }
 
